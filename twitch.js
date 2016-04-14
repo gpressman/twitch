@@ -11,7 +11,8 @@ $.getJSON('https://api.twitch.tv/kraken/streams/OgamingSC2?callback=?', function
       $("#user").html("null")
      }
      else {
-     	$("#user").html(data._links.self)
+     	link = "<a href='" + data._links.self + "'>Link</a>"
+     	$("#user").html(link)
      }
 });
 
