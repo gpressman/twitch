@@ -16,8 +16,9 @@ $.getJSON('https://api.twitch.tv/kraken/streams/OgamingSC2?callback=?', function
      }
 
      game = data.stream.channel.game+ ":";
-     
+     status = data.stream.channel.status
      $("#game").html(game)
+     $("#status").html(status)
 });
 
 })
