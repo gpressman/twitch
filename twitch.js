@@ -7,18 +7,19 @@ $.getJSON('https://api.twitch.tv/kraken/streams/OgamingSC2?callback=?', function
 
 $.getJSON('https://api.twitch.tv/kraken/streams/OgamingSC2?callback=?', function(data) {
 	console.log(data)
+	link = "<a href='" + data._links.self + "'>Link</a>"
+     	$("#user").html(link)
 	if (data.stream == null ){
-      $("#user").html("null")
+      $("#status").html("offline")
      }
      else {
-     	link = "<a href='" + data._links.self + "'>Link</a>"
-     	$("#user").html(link)
-     }
-
-     game = data.stream.channel.game+ ":";
+     	game = data.stream.channel.game+ ":";
      status = data.stream.channel.status
      $("#game").html(game)
      $("#status").html(status)
+     }
+
+     
 });
 
 })
