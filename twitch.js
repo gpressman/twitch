@@ -1,24 +1,27 @@
 $(document).ready(function(){
-  var users = ["freecodecamp", "storbeck", "terakilobyte", "habathcx", "RobotCaleb", "thomasballinger", "noobs2ninjas", "beohoff", "OgamingSC2"];
-  var names = ""
-  var status = ""
+  var users = ["freecodecamp", "storbeck", "terakilobyte", "habathcx", "RobotCaleb", "thomasballinger", "noobs2ninjas", "beohoff", "OgamingSC2", "comster404"];
+  var content= ""
   users.forEach(function(user) {
   	  $.getJSON("https://api.twitch.tv/kraken/streams/" + user + "?callback=?", function(data) {
   	 if (data.error == "Unprocessable Entity"){
-    	names += "<p>" + user + "</p>"
-    	status += "<p> No user data </p>" 
+    	content += "<div class='row offline'><div class='col-xs-3'>" + user + "</div>"
+    	content += "<div class='col-xs-6'> No User Data </div></div>"
+    	
     	}
      else if (data.stream == null ){
-       names += "<p><a href='" + data._links.self + "'>" + user + "</a></p>"
-       status += "<p> offline </p>"
+       content += "<div class='row offline'><div class='col-xs-3'>" + "<a href='" + data._links.self + "'>" + user + "</a>" + "</div>"
+       content += "<div class='col-xs-6'>Offline</div></div>"  
+       
      }
      else {
-     	names = "<p><a href='" + data._links.self + "'>" + user + "</a></p>" + names
-     	status = "<p>" + data.stream.channel.game+ ":" + data.stream.channel.status + "</p>"  + status
+     	content = "<div class='col-xs-6'>" + data.stream.channel.game + ":" + data.stream.channel.status + "</div></div>" + content
+     	content = "<div class='row online'><div class='col-xs-3'>" + "<a href='" + data._links.self + "'>" + user + "</a>" + "</div>" + content
+     	
+     	
      }
   
-    $("#names").html(names)    
-    $("#status").html(status)
+    $("#data").html(content)    
+  
 })
     })
   })
