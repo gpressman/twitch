@@ -13,8 +13,8 @@ $(document).ready(function(){
        status += "<p> offline </p>"
      }
      else {
-     	names += "<p><a href='" + data._links.self + "'>" + user + "</a></p>"
-     	status += "<p>" + data.stream.channel.game+ ":" + data.stream.channel.status + "</p>"
+     	names = "<p><a href='" + data._links.self + "'>" + user + "</a></p>" + names
+     	status = "<p>" + data.stream.channel.game+ ":" + data.stream.channel.status + "</p>"  + status
      }
   
     $("#names").html(names)    
